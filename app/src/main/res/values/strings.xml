@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AudiobookApp</string>
+    <string name="app_name">Device Manager</string>
     <string name="home">Home</string>
     <string name="share">Share</string>
     <string name="history">History</string>

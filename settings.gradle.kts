@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AudiobookApp"
+rootProject.name = "DeviceManager"
 include(":app")
  
