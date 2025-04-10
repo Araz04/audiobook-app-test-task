@@ -2,16 +2,19 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+
 }
 
 android {
     namespace = "com.test.task.audiobookapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.test.task.audiobookapp"
         minSdk = 28
-        targetSdk = 34
+        //noinspection EditedTargetSdkVersion
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -49,6 +52,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,4 +60,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+
 }
