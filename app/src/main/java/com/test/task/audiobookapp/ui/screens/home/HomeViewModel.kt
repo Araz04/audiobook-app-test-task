@@ -110,7 +110,12 @@ class HomeViewModel(
 
     fun resetDevice(deviceId: String) {
         viewModelScope.launch {
-            deviceRepository.resetDevice(deviceId)
+            val deviceExists = deviceRepository.resetDevice(deviceId)
+            if (deviceExists) {
+                _selectedDevices.update { selected ->
+                    selected - deviceId
+                }
+            }
         }
     }
 

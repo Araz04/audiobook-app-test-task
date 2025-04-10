@@ -24,18 +24,8 @@ class DeviceDataSource {
     }
 
     fun resetDevice(deviceId: String): Boolean {
-        var wasReset = false
-        devicesFlow.update { devices ->
-            devices.map { device ->
-                if (device.id == deviceId && device.status == DeviceStatus.LOST) {
-                    wasReset = true
-                    device.copy(status = DeviceStatus.NORMAL)
-                } else {
-                    device
-                }
-            }
-        }
-        return wasReset
+        val deviceExists = devicesFlow.value.any { it.id == deviceId }
+        return deviceExists
     }
 
     private fun generateMockDevices(): List<Device> {
