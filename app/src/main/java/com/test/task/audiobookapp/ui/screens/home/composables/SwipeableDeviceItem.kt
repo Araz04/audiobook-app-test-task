@@ -14,8 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.test.task.audiobookapp.R
 import com.test.task.audiobookapp.domain.model.Device
 import com.test.task.audiobookapp.domain.model.DeviceStatus
 import com.test.task.audiobookapp.ui.theme.LostOrangeColor
@@ -110,7 +112,7 @@ fun SwipeableDeviceItem(
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
                 ) {
                     Text(
-                        text = if (device.status == DeviceStatus.LOST) "Recover" else "Lost",
+                        text = if (device.status == DeviceStatus.LOST) stringResource(R.string.recover) else stringResource(R.string.lost),
                         color = Color.White,
                         style = MaterialTheme.typography.bodyLarge
                     )

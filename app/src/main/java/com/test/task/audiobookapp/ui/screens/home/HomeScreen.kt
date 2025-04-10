@@ -11,9 +11,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.test.task.audiobookapp.R
 import com.test.task.audiobookapp.domain.model.DeviceType
 import com.test.task.audiobookapp.ui.screens.home.composables.SearchField
 import com.test.task.audiobookapp.ui.screens.home.composables.SwipeableDeviceItem
@@ -69,7 +71,7 @@ fun HomeScreen(
                     .height(32.dp),
                 text = {
                     Text(
-                        text = "Iphone",
+                        text = stringResource(R.string.iphone),
                         style = MaterialTheme.typography.bodyMedium.copy(
                             fontWeight = if (selectedTab == DeviceType.IPHONE) FontWeight.Bold else FontWeight.Normal,
                         ),
@@ -95,7 +97,7 @@ fun HomeScreen(
                     .height(32.dp),
                 text = {
                     Text(
-                        text = "Android",
+                        text = stringResource(R.string.android),
                         style = MaterialTheme.typography.bodyMedium.copy(
                             fontWeight = if (selectedTab == DeviceType.ANDROID) FontWeight.Bold else FontWeight.Normal,
                         ),

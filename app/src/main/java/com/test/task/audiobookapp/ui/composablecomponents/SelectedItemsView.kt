@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -64,7 +65,11 @@ fun SelectedItemsView(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = if (selectedCount > 0) "$selectedCount Items selected" else "Selected Items",
+                    text = if (selectedCount > 0) {
+                        stringResource(R.string.items_selected_with_number, selectedCount)
+                    } else {
+                        stringResource(R.string.selected_items)
+                    },
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold
                 )
@@ -96,7 +101,7 @@ fun SelectedItemsView(
                         modifier = Modifier.height(36.dp),
                         text = {
                             Text(
-                                "Lost",
+                                text = stringResource(R.string.lost),
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = AppPrimaryTextColor,
                                 modifier = Modifier
@@ -117,7 +122,7 @@ fun SelectedItemsView(
                         modifier = Modifier.height(36.dp),
                         text = {
                             Text(
-                                "Reset",
+                                text = stringResource(R.string.reset),
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = ResetRedColor,
                                 modifier = Modifier

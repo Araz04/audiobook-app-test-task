@@ -4,4 +4,18 @@
     <string name="share">Share</string>
     <string name="history">History</string>
     <string name="account">Account</string>
+    <string name="search">Search</string>
+    <string name="reset">Reset</string>
+    <string name="lost">Lost</string>
+    <string name="recover">Recover</string>
+    <string name="select">Select</string>
+    <string name="android">Android</string>
+    <string name="iphone">Iphone</string>
+    <string name="cancel">Cancel</string>
+    <string name="select_all">Select all</string>
+    <string name="selected_items">Selected items</string>
+    <string name="items_selected_with_number">%1$d items selected</string>
+    <string name="share_screen_under_construction">Share Screen is under construction</string>
+    <string name="history_screen_under_construction">History Screen is under construction</string>
+    <string name="account_screen_under_construction">Account Screen is under construction</string>
 </resources>

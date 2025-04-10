@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.test.task.audiobookapp.ui.composablecomponents.SelectedItemsView
 import com.test.task.audiobookapp.ui.navigation.BottomNavigationBar
@@ -38,7 +39,7 @@ fun MainScreen(viewModel: HomeViewModel = koinViewModel()) {
                 selectionMode = selectionMode,
                 onToggleSelectionMode = { viewModel.toggleSelectionMode() },
                 onSelectAll = { viewModel.selectAllDevices() },
-                onAdd = {}
+                onAdd = {},
             )
         },
         bottomBar = {
