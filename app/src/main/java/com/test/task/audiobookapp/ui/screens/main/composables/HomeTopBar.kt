@@ -1,4 +1,4 @@
-package com.test.task.audiobookapp.ui.screens.home.composables
+package com.test.task.audiobookapp.ui.screens.main.composables
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -47,16 +47,25 @@ fun AppTopBar(
     currentRoute: String?
 ) {
     var showMenu by remember { mutableStateOf(false) }
+    val title = when (currentRoute) {
+        BottomNavItem.Home.route -> stringResource(R.string.home)
+        BottomNavItem.Share.route -> stringResource(R.string.share)
+        BottomNavItem.History.route -> stringResource(R.string.history)
+        BottomNavItem.Account.route -> stringResource(R.string.account)
+        else -> stringResource(R.string.home) // Default to "Home" if route is unknown
+    }
 
     TopAppBar(
         modifier = Modifier.padding(end = 16.dp),
         navigationIcon = {
-            IconButton(onClick = onAdd) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_plus),
-                    contentDescription = "Add",
-                    tint = Color.Unspecified
-                )
+            if (currentRoute == BottomNavItem.Home.route) {
+                IconButton(onClick = onAdd) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_plus),
+                        contentDescription = "Add",
+                        tint = Color.Unspecified
+                    )
+                }
             }
         },
         title = {
@@ -66,7 +75,7 @@ fun AppTopBar(
             ) {
                 if (!selectionMode) {
                     Text(
-                        text = "Home",
+                        text = title,
                         style = MaterialTheme.typography.titleLarge.copy(
                             fontWeight = FontWeight.Bold
                         ),

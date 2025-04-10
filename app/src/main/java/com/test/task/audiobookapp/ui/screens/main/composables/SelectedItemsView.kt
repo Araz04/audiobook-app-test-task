@@ -1,4 +1,4 @@
-package com.test.task.audiobookapp.ui.composablecomponents
+package com.test.task.audiobookapp.ui.screens.main.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -36,7 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.test.task.audiobookapp.R
-import com.test.task.audiobookapp.ui.screens.home.HomeViewModel
+import com.test.task.audiobookapp.ui.stateholders.HomeViewModel
 import com.test.task.audiobookapp.ui.theme.AppPrimaryTextColor
 import com.test.task.audiobookapp.ui.theme.ResetRedColor
 import com.test.task.audiobookapp.ui.theme.SelectedItemsContainerColor

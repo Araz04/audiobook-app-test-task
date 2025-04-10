@@ -1,4 +1,4 @@
-package com.test.task.audiobookapp.ui.screens.home
+package com.test.task.audiobookapp.ui.stateholders
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+
+const val DELAY_TIME = 5000L
 
 class HomeViewModel(
     private val deviceRepository: DeviceRepository
@@ -29,7 +31,6 @@ class HomeViewModel(
     private val _selectedDevices = MutableStateFlow<Set<String>>(emptySet())
     val selectedDevices = _selectedDevices.asStateFlow()
 
-
     val devices = combine(
         deviceRepository.getDevices(),
         _selectedTab,
@@ -43,12 +44,12 @@ class HomeViewModel(
             }
     }.stateIn(
         viewModelScope,
-        SharingStarted.WhileSubscribed(5000),
+        SharingStarted.WhileSubscribed(DELAY_TIME),
         emptyList()
     )
 
     val selectedDevicesCount = _selectedDevices.map { it.size }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(DELAY_TIME), 0)
 
     fun setTab(tab: DeviceType) {
         _selectedTab.value = tab

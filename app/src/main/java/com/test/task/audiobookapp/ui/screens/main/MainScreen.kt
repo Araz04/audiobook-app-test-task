@@ -10,14 +10,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.test.task.audiobookapp.ui.composablecomponents.SelectedItemsView
 import com.test.task.audiobookapp.ui.navigation.BottomNavigationBar
 import com.test.task.audiobookapp.ui.navigation.BottomNavItem
 import com.test.task.audiobookapp.ui.screens.account.AccountScreen
 import com.test.task.audiobookapp.ui.screens.history.HistoryScreen
 import com.test.task.audiobookapp.ui.screens.home.HomeScreen
-import com.test.task.audiobookapp.ui.screens.home.HomeViewModel
-import com.test.task.audiobookapp.ui.screens.home.composables.AppTopBar
+import com.test.task.audiobookapp.ui.screens.main.composables.AppTopBar
+import com.test.task.audiobookapp.ui.screens.main.composables.SelectedItemsView
+import com.test.task.audiobookapp.ui.stateholders.HomeViewModel
 import com.test.task.audiobookapp.ui.screens.share.ShareScreen
 import org.koin.androidx.compose.koinViewModel
 
@@ -32,6 +32,7 @@ fun MainScreen(viewModel: HomeViewModel = koinViewModel()) {
     )
 
     val selectionMode by viewModel.selectionMode.collectAsStateWithLifecycle()
+
     val currentRoute by navController.currentBackStackEntryAsState()
     val currentDestination = currentRoute?.destination?.route
 
@@ -41,7 +42,7 @@ fun MainScreen(viewModel: HomeViewModel = koinViewModel()) {
                 selectionMode = selectionMode,
                 onToggleSelectionMode = { viewModel.toggleSelectionMode() },
                 onSelectAll = { viewModel.selectAllDevices() },
-                onAdd = {},
+                onAdd = { },
                 currentRoute = currentDestination
             )
         },

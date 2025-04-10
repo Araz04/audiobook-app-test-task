@@ -19,6 +19,7 @@ import com.test.task.audiobookapp.R
 import com.test.task.audiobookapp.domain.model.DeviceType
 import com.test.task.audiobookapp.ui.screens.home.composables.SearchField
 import com.test.task.audiobookapp.ui.screens.home.composables.SwipeableDeviceItem
+import com.test.task.audiobookapp.ui.stateholders.HomeViewModel
 import com.test.task.audiobookapp.ui.theme.AppContainersColor
 import com.test.task.audiobookapp.ui.theme.AppPrimaryTextColor
 import com.test.task.audiobookapp.ui.theme.ComponentsColor
@@ -65,8 +66,8 @@ fun HomeScreen(
                 modifier = Modifier
                     .padding(2.dp)
                     .background(
-                        color = if (selectedTab == DeviceType.IPHONE) ComponentsColor else Color.Transparent, // Selected: darker gray, Unselected: lighter gray
-                        shape = RoundedCornerShape(8.dp) // Rounded corners
+                        color = if (selectedTab == DeviceType.IPHONE) ComponentsColor else Color.Transparent,
+                        shape = RoundedCornerShape(8.dp)
                     )
                     .height(32.dp),
                 text = {
@@ -91,7 +92,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .padding(2.dp)
                     .background(
-                        color = if (selectedTab == DeviceType.ANDROID) ComponentsColor else Color.Transparent, // Selected: darker gray, Unselected: lighter gray
+                        color = if (selectedTab == DeviceType.ANDROID) ComponentsColor else Color.Transparent,
                         shape = RoundedCornerShape(8.dp)
                     )
                     .height(32.dp),
