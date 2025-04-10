@@ -44,6 +44,7 @@ fun AppTopBar(
     onToggleSelectionMode: () -> Unit,
     onSelectAll: () -> Unit,
     onAdd: () -> Unit,
+    currentRoute: String?
 ) {
     var showMenu by remember { mutableStateOf(false) }
 
@@ -113,7 +114,9 @@ fun AppTopBar(
                 }
 
             } else {
+                if (currentRoute == BottomNavItem.Home.route) {
                     ButtonTopAppBar(stringResource(R.string.select), onToggleSelectionMode)
+                }
             }
         }
     )

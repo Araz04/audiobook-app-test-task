@@ -32,6 +32,8 @@ fun MainScreen(viewModel: HomeViewModel = koinViewModel()) {
     )
 
     val selectionMode by viewModel.selectionMode.collectAsStateWithLifecycle()
+    val currentRoute by navController.currentBackStackEntryAsState()
+    val currentDestination = currentRoute?.destination?.route
 
     Scaffold(
         topBar = {
@@ -40,6 +42,7 @@ fun MainScreen(viewModel: HomeViewModel = koinViewModel()) {
                 onToggleSelectionMode = { viewModel.toggleSelectionMode() },
                 onSelectAll = { viewModel.selectAllDevices() },
                 onAdd = {},
+                currentRoute = currentDestination
             )
         },
         bottomBar = {
