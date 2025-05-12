@@ -1,5 +1,6 @@
 package com.test.task.audiobookapp.data.datasource
 
+import com.test.task.audiobookapp.data.DeviceDataSource
 import com.test.task.audiobookapp.domain.model.Device
 import com.test.task.audiobookapp.domain.model.DeviceStatus
 import com.test.task.audiobookapp.domain.model.DeviceType
@@ -7,25 +8,20 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
-class DeviceDataSource {
+class DeviceDataSourceImpl: DeviceDataSource {
     private val devicesFlow = MutableStateFlow(generateMockDevices())
 
-    fun getDevices(): Flow<List<Device>> = devicesFlow
 
-    fun updateDeviceStatus(deviceId: Int, isLost: Boolean): Boolean {
+    override fun getDevices(): Flow<List<Device>> = devicesFlow
+
+    override suspend fun updateDeviceStatus(deviceId: Int, isLost: Boolean): Boolean {
         val newStatus = if (isLost) DeviceStatus.LOST else DeviceStatus.NORMAL
-
         devicesFlow.update { devices ->
             devices.map { device ->
                 if (device.id == deviceId) device.copy(status = newStatus) else device
             }
         }
         return true
-    }
-
-    fun resetDevice(deviceId: Int): Boolean {
-        val deviceExists = devicesFlow.value.any { it.id == deviceId }
-        return deviceExists
     }
 
     private fun generateMockDevices(): List<Device> {

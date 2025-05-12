@@ -9,13 +9,13 @@ import kotlinx.coroutines.flow.map
 class DeviceRepositoryImpl(private val deviceDataSource: DeviceDataSource): DeviceRepository {
     override fun getDevices(): Flow<List<Device>> = deviceDataSource.getDevices()
 
-    override suspend fun markAsLost(deviceId: String): Boolean =
+    override suspend fun markAsLost(deviceId: Int): Boolean =
         deviceDataSource.updateDeviceStatus(deviceId, true)
 
-    override suspend fun recoverDevice(deviceId: String): Boolean =
+    override suspend fun recoverDevice(deviceId: Int): Boolean =
         deviceDataSource.updateDeviceStatus(deviceId, false)
 
-    override suspend fun resetDevice(deviceId: String): Boolean =
+    override suspend fun resetDevice(deviceId: Int): Boolean =
         deviceDataSource.resetDevice(deviceId)
 
     override suspend fun searchDevices(query: String): Flow<List<Device>> {

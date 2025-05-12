@@ -28,7 +28,7 @@ class HomeViewModel(
     private val _selectionMode = MutableStateFlow(false)
     val selectionMode = _selectionMode.asStateFlow()
 
-    private val _selectedDevices = MutableStateFlow<Set<String>>(emptySet())
+    private val _selectedDevices = MutableStateFlow<Set<Int>>(emptySet())
     val selectedDevices = _selectedDevices.asStateFlow()
 
     val devices = combine(
@@ -66,7 +66,7 @@ class HomeViewModel(
         }
     }
 
-    fun toggleDeviceSelection(deviceId: String) {
+    fun toggleDeviceSelection(deviceId: Int) {
         _selectedDevices.update { selected ->
             if (selected.contains(deviceId)) {
                 selected - deviceId
@@ -94,7 +94,7 @@ class HomeViewModel(
         }
     }
 
-    fun recoverDevice(deviceId: String) {
+    fun recoverDevice(deviceId: Int) {
         viewModelScope.launch {
             deviceRepository.recoverDevice(deviceId)
         }
@@ -109,7 +109,7 @@ class HomeViewModel(
         }
     }
 
-    fun resetDevice(deviceId: String) {
+    fun resetDevice(deviceId: Int) {
         viewModelScope.launch {
             val deviceExists = deviceRepository.resetDevice(deviceId)
             if (deviceExists) {
@@ -120,7 +120,7 @@ class HomeViewModel(
         }
     }
 
-    fun markDeviceAsLost(deviceId: String) {
+    fun markDeviceAsLost(deviceId: Int) {
         viewModelScope.launch {
             deviceRepository.markAsLost(deviceId)
         }

@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface DeviceRepository {
     fun getDevices(): Flow<List<Device>>
-    suspend fun markAsLost(deviceId: String): Boolean
-    suspend fun recoverDevice(deviceId: String): Boolean
-    suspend fun resetDevice(deviceId: String): Boolean
+    suspend fun markAsLost(deviceId: Int): Boolean
+    suspend fun recoverDevice(deviceId: Int): Boolean
+    suspend fun resetDevice(deviceId: Int): Boolean
     suspend fun searchDevices(query: String): Flow<List<Device>>
 }
