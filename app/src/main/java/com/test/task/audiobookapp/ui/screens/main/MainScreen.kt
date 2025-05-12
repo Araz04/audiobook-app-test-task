@@ -1,5 +1,6 @@
 package com.test.task.audiobookapp.ui.screens.main
 
+import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -10,6 +11,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.test.task.audiobookapp.R
+import com.test.task.audiobookapp.data.model.ShareOption
 import com.test.task.audiobookapp.ui.navigation.BottomNavigationBar
 import com.test.task.audiobookapp.ui.navigation.BottomNavItem
 import com.test.task.audiobookapp.ui.screens.account.AccountScreen
@@ -35,6 +38,8 @@ fun MainScreen(viewModel: HomeViewModel = koinViewModel()) {
 
     val currentRoute by navController.currentBackStackEntryAsState()
     val currentDestination = currentRoute?.destination?.route
+
+
 
     Scaffold(
         topBar = {
@@ -62,6 +67,28 @@ fun MainScreen(viewModel: HomeViewModel = koinViewModel()) {
         }
 
     ) { paddingValues ->
+        val shareOptions = listOf(
+            ShareOption(
+                id = 1,
+                title = "Photos",
+                iconResId = R.drawable.ic_photos // Replace with your drawable
+            ),
+            ShareOption(
+                id = 2,
+                title = "Files",
+                iconResId = R.drawable.ic_files
+            ),
+            ShareOption(
+                id = 3,
+                title = "Notes",
+                iconResId = R.drawable.ic_notes
+            ),
+            ShareOption(
+                id = 4,
+                title = "Voice Memos",
+                iconResId = R.drawable.ic_voice_memos
+            )
+        )
         NavHost(
             navController = navController,
             startDestination = BottomNavItem.Home.route,
@@ -69,7 +96,14 @@ fun MainScreen(viewModel: HomeViewModel = koinViewModel()) {
         )
         {
             composable(BottomNavItem.Home.route) { HomeScreen(viewModel) }
-            composable(BottomNavItem.Share.route) { ShareScreen() }
+            composable(BottomNavItem.Share.route) {
+                ShareScreen(
+                    options = shareOptions,
+                    onItemClick = { selectedOption ->
+
+                    }
+                )
+            }
             composable(BottomNavItem.History.route) { HistoryScreen() }
             composable(BottomNavItem.Account.route) { AccountScreen() }
         }

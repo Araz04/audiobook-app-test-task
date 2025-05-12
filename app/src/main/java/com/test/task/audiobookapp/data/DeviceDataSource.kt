@@ -1,6 +1,6 @@
 package com.test.task.audiobookapp.data
 
-import com.test.task.audiobookapp.domain.model.Device
+import com.test.task.audiobookapp.data.model.Device
 import kotlinx.coroutines.flow.Flow
 
 interface DeviceDataSource {

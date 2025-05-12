@@ -1,7 +1,7 @@
 package com.test.task.audiobookapp.data.repository
 
 import com.test.task.audiobookapp.data.datasource.DeviceDataSource
-import com.test.task.audiobookapp.domain.model.Device
+import com.test.task.audiobookapp.data.model.Device
 import com.test.task.audiobookapp.domain.repository.DeviceRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

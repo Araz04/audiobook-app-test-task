@@ -2,7 +2,7 @@ package com.test.task.audiobookapp.ui.stateholders
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.test.task.audiobookapp.domain.model.DeviceType
+import com.test.task.audiobookapp.data.model.DeviceType
 import com.test.task.audiobookapp.domain.repository.DeviceRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

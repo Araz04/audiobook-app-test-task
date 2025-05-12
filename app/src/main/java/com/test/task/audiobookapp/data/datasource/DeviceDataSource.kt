@@ -1,8 +1,8 @@
 package com.test.task.audiobookapp.data.datasource
 
-import com.test.task.audiobookapp.domain.model.Device
-import com.test.task.audiobookapp.domain.model.DeviceStatus
-import com.test.task.audiobookapp.domain.model.DeviceType
+import com.test.task.audiobookapp.data.model.Device
+import com.test.task.audiobookapp.data.model.DeviceStatus
+import com.test.task.audiobookapp.data.model.DeviceType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update

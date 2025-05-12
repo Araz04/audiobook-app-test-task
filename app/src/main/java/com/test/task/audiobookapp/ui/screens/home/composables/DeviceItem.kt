@@ -9,8 +9,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.test.task.audiobookapp.R
-import com.test.task.audiobookapp.domain.model.Device
-import com.test.task.audiobookapp.domain.model.DeviceStatus
+import com.test.task.audiobookapp.data.model.Device
+import com.test.task.audiobookapp.data.model.DeviceStatus
 import com.test.task.audiobookapp.ui.theme.AppPrimaryTextColor
 import com.test.task.audiobookapp.ui.theme.ComponentsColor
 import com.test.task.audiobookapp.ui.theme.LostOrangeColor

@@ -18,8 +18,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.test.task.audiobookapp.R
-import com.test.task.audiobookapp.domain.model.Device
-import com.test.task.audiobookapp.domain.model.DeviceStatus
+import com.test.task.audiobookapp.data.model.Device
+import com.test.task.audiobookapp.data.model.DeviceStatus
 import com.test.task.audiobookapp.ui.theme.LostOrangeColor
 import com.test.task.audiobookapp.ui.theme.ResetRedColor
 import kotlinx.coroutines.launch

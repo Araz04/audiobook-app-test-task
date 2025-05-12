@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.test.task.audiobookapp.R
-import com.test.task.audiobookapp.domain.model.DeviceType
+import com.test.task.audiobookapp.data.model.DeviceType
 import com.test.task.audiobookapp.ui.screens.home.composables.SearchField
 import com.test.task.audiobookapp.ui.screens.home.composables.SwipeableDeviceItem
 import com.test.task.audiobookapp.ui.stateholders.HomeViewModel
