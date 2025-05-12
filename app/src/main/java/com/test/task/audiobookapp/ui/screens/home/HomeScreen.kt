@@ -28,6 +28,7 @@ import com.test.task.audiobookapp.ui.theme.ComponentsColor
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel,
+    modifier: Modifier = Modifier
 ) {
     val devices by viewModel.devices.collectAsStateWithLifecycle()
     val selectedTab by viewModel.selectedTab.collectAsStateWithLifecycle()

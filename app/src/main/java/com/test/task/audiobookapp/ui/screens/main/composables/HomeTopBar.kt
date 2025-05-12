@@ -2,10 +2,13 @@ package com.test.task.audiobookapp.ui.screens.main.composables
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -52,11 +55,11 @@ fun AppTopBar(
         BottomNavItem.Share.route -> stringResource(R.string.share)
         BottomNavItem.History.route -> stringResource(R.string.history)
         BottomNavItem.Account.route -> stringResource(R.string.account)
-        else -> stringResource(R.string.home) // Default to "Home" if route is unknown
+        else -> ""
     }
 
     TopAppBar(
-        modifier = Modifier.padding(end = 16.dp),
+        modifier = Modifier.padding(WindowInsets.statusBars.asPaddingValues()),
         navigationIcon = {
             if (currentRoute == BottomNavItem.Home.route) {
                 IconButton(onClick = onAdd) {

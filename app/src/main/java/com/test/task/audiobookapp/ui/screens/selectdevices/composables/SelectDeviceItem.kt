@@ -1,4 +1,4 @@
-package com.test.task.audiobookapp.ui.screens.share.composables
+package com.test.task.audiobookapp.ui.screens.selectdevices.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

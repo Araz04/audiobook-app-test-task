@@ -18,4 +18,6 @@
     <string name="share_screen_under_construction">Share Screen is under construction</string>
     <string name="history_screen_under_construction">History Screen is under construction</string>
     <string name="account_screen_under_construction">Account Screen is under construction</string>
+    <string name="share_text">Share</string>
+    <string name="continue_text">Continue</string>
 </resources>
