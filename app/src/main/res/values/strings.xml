@@ -20,4 +20,9 @@
     <string name="account_screen_under_construction">Account Screen is under construction</string>
     <string name="share_text">Share</string>
     <string name="continue_text">Continue</string>
+    <string name="text_ok">OK</string>
+    <string name="file_share_error_message">Something went wrong. Please,try again.</string>
+    <string name="success">Success</string>
+    <string name="error">Error</string>
+    <string name="file_share_success_message">You have successfully shared selected files.</string>
 </resources>

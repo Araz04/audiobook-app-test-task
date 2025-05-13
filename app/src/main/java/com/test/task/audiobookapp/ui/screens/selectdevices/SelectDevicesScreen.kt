@@ -16,6 +16,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -23,10 +26,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.test.task.audiobookapp.R
+import com.test.task.audiobookapp.ui.screens.dialogs.SimpleMessageDialog
 import com.test.task.audiobookapp.ui.screens.home.composables.DeviceItem
 import com.test.task.audiobookapp.ui.screens.home.composables.SearchField
 import com.test.task.audiobookapp.ui.stateholders.SelectDevicesViewModel
 import com.test.task.audiobookapp.ui.theme.AppBlueColor
+import com.test.task.audiobookapp.ui.theme.AppButtonTextColor
+import com.test.task.audiobookapp.ui.theme.DisabledButtonBackgroundColor
+import com.test.task.audiobookapp.ui.theme.DisabledButtonTextColor
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -34,6 +41,11 @@ fun SelectDevicesScreen(viewModel: SelectDevicesViewModel, fileUris: List<Uri>) 
     val devices by viewModel.devices.collectAsStateWithLifecycle()
     val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
     val selectedDevices by viewModel.selectedDevices.collectAsStateWithLifecycle()
+    var showDialog by remember { mutableStateOf(false) }
+
+    fun onShowDialog() {
+        showDialog = true
+    }
 
     Column(
         modifier = Modifier
@@ -74,12 +86,15 @@ fun SelectDevicesScreen(viewModel: SelectDevicesViewModel, fileUris: List<Uri>) 
         }
         Button(
             onClick = {
-
+                onShowDialog()
             },
             shape = RoundedCornerShape(12.dp),
+            enabled = selectedDevices.isNotEmpty(),
             colors = ButtonDefaults.buttonColors(
                 containerColor = AppBlueColor,
-                contentColor = Color.White
+                contentColor = AppButtonTextColor,
+                disabledContainerColor = DisabledButtonBackgroundColor, // Optional: style when disabled
+                disabledContentColor = DisabledButtonTextColor
             ),
             modifier = Modifier
                 .fillMaxWidth()
@@ -91,5 +106,14 @@ fun SelectDevicesScreen(viewModel: SelectDevicesViewModel, fileUris: List<Uri>) 
                 fontSize = 18.sp,
             )
         }
+    }
+
+    if (showDialog) {
+        SimpleMessageDialog(
+            title = stringResource(R.string.success),
+            message = stringResource(R.string.file_share_success_message),
+            confirmButtonText = stringResource(R.string.text_ok),
+            onDismiss = { showDialog = false }
+        )
     }
 }
