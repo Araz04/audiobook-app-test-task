@@ -10,6 +10,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,6 +23,7 @@ import com.test.task.audiobookapp.R
 import com.test.task.audiobookapp.data.model.ShareOption
 import com.test.task.audiobookapp.ui.screens.selectdevices.composables.ShareOptionView
 import com.test.task.audiobookapp.ui.screens.share.bottomsheet.ShareBottomSheetContent
+import com.test.task.audiobookapp.ui.screens.share.bottomsheet.ShareStep
 import com.test.task.audiobookapp.ui.screens.share.bottomsheet.ShareTab
 import com.test.task.audiobookapp.ui.theme.SurfaceColor
 
@@ -36,6 +38,10 @@ fun ShareScreen(
             .background(color = SurfaceColor)
     ) {
         var showBottomSheet by remember { mutableStateOf(false) }
+        val sheetState = rememberModalBottomSheetState(
+            skipPartiallyExpanded = true, // Optional: fully expands by default
+            confirmValueChange = { true }
+        )
 
         val optionPhotos = ShareOption(
             id = 1, title = stringResource(R.string.photos), iconResId = R.drawable.ic_photos
@@ -82,8 +88,9 @@ fun ShareScreen(
         }
         if (showBottomSheet) {
             ModalBottomSheet(
+                sheetState = sheetState,
                 onDismissRequest = { showBottomSheet = false },
-                shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
+                shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
             ) {
                 ShareBottomSheetContent(
                     initialTab = ShareTab.Photos,

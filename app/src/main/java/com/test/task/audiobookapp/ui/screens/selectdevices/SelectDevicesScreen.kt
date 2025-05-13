@@ -2,6 +2,7 @@ package com.test.task.audiobookapp.ui.screens.selectdevices
 
 import android.net.Uri
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -53,8 +54,7 @@ fun SelectDevicesScreen(
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxHeight(0.9f)
     ) {
         Column(
             modifier = Modifier.weight(1f)
