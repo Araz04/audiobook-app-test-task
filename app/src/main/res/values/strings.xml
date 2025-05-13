@@ -25,4 +25,10 @@
     <string name="success">Success</string>
     <string name="error">Error</string>
     <string name="file_share_success_message">You have successfully shared selected files.</string>
+    <string name="photos">Photos</string>
+    <string name="albums">Albums</string>
+    <string name="files">Files</string>
+    <string name="notes">Notes</string>
+    <string name="voice_memos">Voice Memos</string>
+    <string name="text_continue">Continue</string>
 </resources>

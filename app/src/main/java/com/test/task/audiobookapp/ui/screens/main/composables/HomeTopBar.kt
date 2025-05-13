@@ -59,7 +59,7 @@ fun AppTopBar(
     }
 
     TopAppBar(
-        modifier = Modifier.padding(WindowInsets.statusBars.asPaddingValues()),
+        modifier = Modifier.padding(top = 24.dp),
         navigationIcon = {
             if (currentRoute == BottomNavItem.Home.route) {
                 IconButton(onClick = onAdd) {

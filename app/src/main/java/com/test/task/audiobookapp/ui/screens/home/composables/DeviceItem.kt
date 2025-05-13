@@ -21,6 +21,7 @@ fun DeviceItem(
     device: Device,
     isSelected: Boolean = false,
     isLastItem: Boolean = false,
+    isNavigateNeeded: Boolean = true,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -62,12 +63,14 @@ fun DeviceItem(
                         modifier = Modifier.size(16.dp)
                     )
                 } else {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_chevron_right),
-                        contentDescription = "Navigate",
-                        tint = Color.Unspecified,
-                        modifier = Modifier.size(16.dp)
-                    )
+                    if (isNavigateNeeded){
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_chevron_right),
+                            contentDescription = "Navigate",
+                            tint = Color.Unspecified,
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
                 }
             }
 

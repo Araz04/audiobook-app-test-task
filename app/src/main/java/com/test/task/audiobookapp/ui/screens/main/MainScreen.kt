@@ -35,7 +35,6 @@ import java.nio.charset.StandardCharsets
 @Composable
 fun MainScreen(
     viewModel: HomeViewModel = koinViewModel(),
-    selectDevicesViewModel: SelectDevicesViewModel = koinViewModel()
 ) {
     val navController = rememberNavController()
     val items = listOf(
@@ -53,14 +52,6 @@ fun MainScreen(
 
     Scaffold(
         topBar = {
-            if (isSelectDeviceScreen) {
-                ShareTopBar(
-                    viewModel = selectDevicesViewModel,
-                    onSelectAll = { viewModel.selectAllDevices() },
-                    onCancel = { viewModel.resetSelectedDevices() },
-                    onBackClicked = { navController.popBackStack() }
-                )
-            } else {
                 AppTopBar(
                     selectionMode = selectionMode,
                     onToggleSelectionMode = { viewModel.toggleSelectionMode() },
@@ -68,8 +59,6 @@ fun MainScreen(
                     onAdd = { },
                     currentRoute = currentRoute
                 )
-            }
-
         },
         bottomBar = {
             if (selectionMode) {
@@ -92,28 +81,7 @@ fun MainScreen(
         }
 
     ) { paddingValues ->
-        val shareOptions = listOf(
-            ShareOption(
-                id = 1,
-                title = "Photos",
-                iconResId = R.drawable.ic_photos // Replace with your drawable
-            ),
-            ShareOption(
-                id = 2,
-                title = "Files",
-                iconResId = R.drawable.ic_files
-            ),
-            ShareOption(
-                id = 3,
-                title = "Notes",
-                iconResId = R.drawable.ic_notes
-            ),
-            ShareOption(
-                id = 4,
-                title = "Voice Memos",
-                iconResId = R.drawable.ic_voice_memos
-            )
-        )
+
         val uriList: List<Uri> = listOf()
 
         val encodedUriList = uriList.joinToString(separator = ",") {
@@ -130,32 +98,25 @@ fun MainScreen(
         )
         {
             composable(BottomNavItem.Home.route) { HomeScreen(viewModel) }
-            composable(BottomNavItem.Share.route) {
-                ShareScreen(
-                    options = shareOptions,
-                    onItemClick = { selectedOption ->
-                        navController.navigate("select_device_screen/$encodedUriList")
-                    }
-                )
-            }
+            composable(BottomNavItem.Share.route) { ShareScreen() }
             composable(BottomNavItem.History.route) { HistoryScreen() }
             composable(BottomNavItem.Account.route) { AccountScreen() }
-            composable(
-                route = "select_device_screen/{uriList}",
-                arguments = listOf(navArgument("uriList") { type = NavType.StringType })
-            ) { backStackEntry ->
-                val encodedList = backStackEntry.arguments?.getString("uriList") ?: ""
-                val uriList = encodedList.split(",")
-                    .mapNotNull {
-                        try {
-                            Uri.parse(URLDecoder.decode(it, StandardCharsets.UTF_8.toString()))
-                        } catch (e: Exception) {
-                            null
-                        }
-                    }
-
-                SelectDevicesScreen(viewModel = selectDevicesViewModel, fileUris = uriList)
-            }
+//            composable(
+//                route = "select_device_screen/{uriList}",
+//                arguments = listOf(navArgument("uriList") { type = NavType.StringType })
+//            ) { backStackEntry ->
+//                val encodedList = backStackEntry.arguments?.getString("uriList") ?: ""
+//                val uriList = encodedList.split(",")
+//                    .mapNotNull {
+//                        try {
+//                            Uri.parse(URLDecoder.decode(it, StandardCharsets.UTF_8.toString()))
+//                        } catch (e: Exception) {
+//                            null
+//                        }
+//                    }
+//
+//                SelectDevicesScreen(viewModel = selectDevicesViewModel, fileUris = uriList)
+//            }
         }
     }
 }

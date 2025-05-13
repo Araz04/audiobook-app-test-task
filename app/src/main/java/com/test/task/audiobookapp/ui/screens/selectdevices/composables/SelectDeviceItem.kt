@@ -21,7 +21,7 @@ import com.test.task.audiobookapp.data.model.ShareOption
 import com.test.task.audiobookapp.ui.theme.ComponentsColor
 
 @Composable
-fun ShareOptionItem(
+fun ShareOptionView(
     shareOption: ShareOption,
     modifier: Modifier = Modifier,
     onClick: (ShareOption) -> Unit,

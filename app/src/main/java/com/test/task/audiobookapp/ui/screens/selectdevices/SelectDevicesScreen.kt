@@ -29,6 +29,7 @@ import com.test.task.audiobookapp.R
 import com.test.task.audiobookapp.ui.screens.dialogs.SimpleMessageDialog
 import com.test.task.audiobookapp.ui.screens.home.composables.DeviceItem
 import com.test.task.audiobookapp.ui.screens.home.composables.SearchField
+import com.test.task.audiobookapp.ui.screens.selectdevices.composables.ShareTopBar
 import com.test.task.audiobookapp.ui.stateholders.SelectDevicesViewModel
 import com.test.task.audiobookapp.ui.theme.AppBlueColor
 import com.test.task.audiobookapp.ui.theme.AppButtonTextColor
@@ -37,7 +38,11 @@ import com.test.task.audiobookapp.ui.theme.DisabledButtonTextColor
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SelectDevicesScreen(viewModel: SelectDevicesViewModel, fileUris: List<Uri>) {
+fun SelectDevicesScreen(
+    viewModel: SelectDevicesViewModel = koinViewModel(),
+    fileUris: List<Uri>,
+    onDismissBottomSheet: () -> Unit,
+) {
     val devices by viewModel.devices.collectAsStateWithLifecycle()
     val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
     val selectedDevices by viewModel.selectedDevices.collectAsStateWithLifecycle()
@@ -54,6 +59,12 @@ fun SelectDevicesScreen(viewModel: SelectDevicesViewModel, fileUris: List<Uri>) 
         Column(
             modifier = Modifier.weight(1f)
         ) {
+            ShareTopBar(
+                viewModel = viewModel,
+                onSelectAll = { viewModel.selectAllDevices() },
+                onCancel = { viewModel.resetSelectedDevices() },
+                onBackClicked = onDismissBottomSheet
+            )
 
             SearchField(
                 value = searchQuery,
@@ -79,6 +90,7 @@ fun SelectDevicesScreen(viewModel: SelectDevicesViewModel, fileUris: List<Uri>) 
                             onClick = {
                                 viewModel.toggleDeviceSelection(device.id)
                             },
+                            isNavigateNeeded = false
                         )
                     }
                 }
@@ -113,7 +125,9 @@ fun SelectDevicesScreen(viewModel: SelectDevicesViewModel, fileUris: List<Uri>) 
             title = stringResource(R.string.success),
             message = stringResource(R.string.file_share_success_message),
             confirmButtonText = stringResource(R.string.text_ok),
-            onDismiss = { showDialog = false }
+            onDismiss = { showDialog = false
+                onDismissBottomSheet()
+            }
         )
     }
 }
