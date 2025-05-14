@@ -119,7 +119,7 @@ fun ShareBottomSheetContent(
 
         ShareStep.SelectDevice -> {
             SelectDevicesScreen(
-                fileUris = selectedUris,
+                fileUris = selectedUris.toSet(),
                 onDismissBottomSheet = onDismiss
             )
         }

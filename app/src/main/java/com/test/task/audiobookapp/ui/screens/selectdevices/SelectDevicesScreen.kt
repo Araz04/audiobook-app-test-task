@@ -41,7 +41,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun SelectDevicesScreen(
     viewModel: SelectDevicesViewModel = koinViewModel(),
-    fileUris: List<Uri>,
+    fileUris: Set<Uri>,
     onDismissBottomSheet: () -> Unit,
 ) {
     val devices by viewModel.devices.collectAsStateWithLifecycle()
@@ -125,7 +125,8 @@ fun SelectDevicesScreen(
             title = stringResource(R.string.success),
             message = stringResource(R.string.file_share_success_message),
             confirmButtonText = stringResource(R.string.text_ok),
-            onDismiss = { showDialog = false
+            onDismiss = {
+                showDialog = false
                 onDismissBottomSheet()
             }
         )

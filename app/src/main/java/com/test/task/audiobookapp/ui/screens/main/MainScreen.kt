@@ -26,6 +26,7 @@ import com.test.task.audiobookapp.ui.screens.selectdevices.SelectDevicesScreen
 import com.test.task.audiobookapp.ui.stateholders.HomeViewModel
 import com.test.task.audiobookapp.ui.screens.share.ShareScreen
 import com.test.task.audiobookapp.ui.screens.selectdevices.composables.ShareTopBar
+import com.test.task.audiobookapp.ui.stateholders.MainViewModel
 import com.test.task.audiobookapp.ui.stateholders.SelectDevicesViewModel
 import org.koin.androidx.compose.koinViewModel
 import java.net.URLDecoder
@@ -34,6 +35,8 @@ import java.nio.charset.StandardCharsets
 
 @Composable
 fun MainScreen(
+    mainViewModel: MainViewModel,
+    onPickImage: () -> Unit,
     viewModel: HomeViewModel = koinViewModel(),
 ) {
     val navController = rememberNavController()
@@ -45,7 +48,6 @@ fun MainScreen(
     )
 
     val selectionMode by viewModel.selectionMode.collectAsStateWithLifecycle()
-
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
     val isSelectDeviceScreen = currentRoute?.startsWith("select_device_screen") == true
@@ -98,7 +100,7 @@ fun MainScreen(
         )
         {
             composable(BottomNavItem.Home.route) { HomeScreen(viewModel) }
-            composable(BottomNavItem.Share.route) { ShareScreen() }
+            composable(BottomNavItem.Share.route) { ShareScreen(mainViewModel = mainViewModel, onPickImage = onPickImage) }
             composable(BottomNavItem.History.route) { HistoryScreen() }
             composable(BottomNavItem.Account.route) { AccountScreen() }
 //            composable(
