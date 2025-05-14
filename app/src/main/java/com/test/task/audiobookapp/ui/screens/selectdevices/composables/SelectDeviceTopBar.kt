@@ -55,7 +55,6 @@ fun ShareTopBar(
     val selectedTab by viewModel.selectedTab.collectAsStateWithLifecycle()
 
     TopAppBar(
-        modifier = Modifier.padding(WindowInsets.statusBars.asPaddingValues()),
         navigationIcon = {
             IconButton(onClick = onBackClicked) {
                 Icon(
@@ -71,7 +70,7 @@ fun ShareTopBar(
                 containerColor = AppContainersColor,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(start = 16.dp, end = 16.dp, bottom = 16.dp, top = 0.dp)
                     .background(
                         color = Color.Transparent,
                         shape = RoundedCornerShape(8.dp)

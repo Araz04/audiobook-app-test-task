@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class MainViewModel: ViewModel() {
 
-    private val _selectedImages = MutableStateFlow<Set<Uri>>(emptySet())
-    val selectedImages = _selectedImages.asStateFlow()
+    private val _selectedUris = MutableStateFlow<Set<Uri>>(emptySet())
+    val selectedUris = _selectedUris.asStateFlow()
 
-    fun updateSelectedImages(uris: Set<Uri>){
-        _selectedImages.value = uris
+    fun updateSelectedUris(uris: Set<Uri>){
+        _selectedUris.value = uris
     }
 }

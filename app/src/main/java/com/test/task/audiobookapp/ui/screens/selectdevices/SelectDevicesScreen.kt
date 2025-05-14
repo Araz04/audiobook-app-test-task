@@ -54,7 +54,7 @@ fun SelectDevicesScreen(
     }
 
     Column(
-        modifier = Modifier.fillMaxHeight(0.9f)
+        modifier = Modifier.fillMaxSize()
     ) {
         Column(
             modifier = Modifier.weight(1f)

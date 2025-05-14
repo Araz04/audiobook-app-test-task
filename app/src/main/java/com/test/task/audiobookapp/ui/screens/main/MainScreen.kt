@@ -36,7 +36,8 @@ import java.nio.charset.StandardCharsets
 @Composable
 fun MainScreen(
     mainViewModel: MainViewModel,
-    onPickImage: () -> Unit,
+    onPickImages: () -> Unit,
+    onPickDocuments: () -> Unit,
     viewModel: HomeViewModel = koinViewModel(),
 ) {
     val navController = rememberNavController()
@@ -100,7 +101,7 @@ fun MainScreen(
         )
         {
             composable(BottomNavItem.Home.route) { HomeScreen(viewModel) }
-            composable(BottomNavItem.Share.route) { ShareScreen(mainViewModel = mainViewModel, onPickImage = onPickImage) }
+            composable(BottomNavItem.Share.route) { ShareScreen(mainViewModel = mainViewModel, onPickImages = onPickImages, onPickDocuments = onPickDocuments) }
             composable(BottomNavItem.History.route) { HistoryScreen() }
             composable(BottomNavItem.Account.route) { AccountScreen() }
 //            composable(
