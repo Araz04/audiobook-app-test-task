@@ -3,12 +3,9 @@ package com.test.task.audiobookapp.ui.screens.selectdevices.composables
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenu
@@ -38,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.test.task.audiobookapp.R
 import com.test.task.audiobookapp.data.model.DeviceType
-import com.test.task.audiobookapp.ui.stateholders.SelectDevicesViewModel
+import com.test.task.audiobookapp.ui.stateholders.HomeViewModel
 import com.test.task.audiobookapp.ui.theme.AppContainersColor
 import com.test.task.audiobookapp.ui.theme.AppPrimaryTextColor
 import com.test.task.audiobookapp.ui.theme.ComponentsColor
@@ -49,7 +46,7 @@ fun ShareTopBar(
     onBackClicked: () -> Unit,
     onSelectAll: () -> Unit,
     onCancel: () -> Unit,
-    viewModel: SelectDevicesViewModel,
+    viewModel: HomeViewModel,
 ) {
     var showMenu by remember { mutableStateOf(false) }
     val selectedTab by viewModel.selectedTab.collectAsStateWithLifecycle()
@@ -83,7 +80,8 @@ fun ShareTopBar(
             ) {
                 Tab(
                     selected = selectedTab == DeviceType.IPHONE,
-                    onClick = { viewModel.setTab(DeviceType.IPHONE) },
+                    onClick = {
+                        viewModel.setTab(DeviceType.IPHONE) },
                     modifier = Modifier
                         .padding(2.dp)
                         .background(
@@ -154,8 +152,9 @@ fun ShareTopBar(
                     onClick = {
                         showMenu = false
                         viewModel.selectAllDevices()
+                        onSelectAll()
                     },
-                    4.dp
+                    paddingVertical = 4.dp
                 )
 
                 HorizontalDivider()
@@ -165,9 +164,9 @@ fun ShareTopBar(
                     title = stringResource(R.string.cancel),
                     onClick = {
                         showMenu = false
-                        viewModel.resetSelectedDevices()
+                        onCancel()
                     },
-                    4.dp
+                    paddingVertical = 4.dp
                 )
             }
         }

@@ -2,6 +2,7 @@ package com.test.task.audiobookapp.ui.stateholders
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.test.task.audiobookapp.data.model.DeviceStatus
 import com.test.task.audiobookapp.data.model.DeviceType
 import com.test.task.audiobookapp.domain.repository.DeviceRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,9 +21,6 @@ class SelectDevicesViewModel(val deviceRepository: DeviceRepository): ViewModel(
     private val _searchQuery = MutableStateFlow("")
     val searchQuery = _searchQuery.asStateFlow()
 
-    private val _selectionMode = MutableStateFlow(true)
-    val selectionMode = _selectionMode.asStateFlow()
-
     private val _selectedDevices = MutableStateFlow<Set<Int>>(emptySet())
     val selectedDevices = _selectedDevices.asStateFlow()
 
@@ -33,6 +31,7 @@ class SelectDevicesViewModel(val deviceRepository: DeviceRepository): ViewModel(
     ) { devices, tab, query ->
         devices
             .filter { it.type == tab }
+            .filter { it.status == DeviceStatus.NORMAL }
             .filter {
                 if (query.isBlank()) true
                 else it.label.contains(query, ignoreCase = true)
@@ -43,22 +42,12 @@ class SelectDevicesViewModel(val deviceRepository: DeviceRepository): ViewModel(
         emptyList()
     )
 
-    val selectedDevicesCount = _selectedDevices.map { it.size }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(DELAY_TIME), 0)
-
     fun setTab(tab: DeviceType) {
         _selectedTab.value = tab
     }
 
     fun updateSearchQuery(query: String) {
         _searchQuery.value = query
-    }
-
-    fun toggleSelectionMode() {
-        _selectionMode.value = !_selectionMode.value
-        if (!_selectionMode.value) {
-            _selectedDevices.value = emptySet()
-        }
     }
 
     fun toggleDeviceSelection(deviceId: Int) {

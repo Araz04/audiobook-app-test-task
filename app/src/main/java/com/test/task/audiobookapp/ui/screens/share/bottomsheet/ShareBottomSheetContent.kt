@@ -118,10 +118,10 @@ fun ShareBottomSheetContent(
         }
 
         ShareStep.SelectDevice -> {
-            SelectDevicesScreen(
-                fileUris = selectedUris.toSet(),
-                onDismissBottomSheet = onDismiss
-            )
+//            SelectDevicesScreen(
+//                fileUris = selectedUris.toSet(),
+//                onDismissBottomSheet = onDismiss
+//            )
         }
     }
 }

@@ -2,6 +2,7 @@ package com.test.task.audiobookapp.ui.stateholders
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.test.task.audiobookapp.data.model.DeviceStatus
 import com.test.task.audiobookapp.data.model.DeviceType
 import com.test.task.audiobookapp.domain.repository.DeviceRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,6 +39,24 @@ class HomeViewModel(
     ) { devices, tab, query ->
         devices
             .filter { it.type == tab }
+            .filter {
+                if (query.isBlank()) true
+                else it.label.contains(query, ignoreCase = true)
+            }
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(DELAY_TIME),
+        emptyList()
+    )
+
+    val notLostDevices = combine(
+        deviceRepository.getDevices(),
+        _selectedTab,
+        _searchQuery
+    ) { devices, tab, query ->
+        devices
+            .filter { it.type == tab }
+            .filter { it.status == DeviceStatus.NORMAL }
             .filter {
                 if (query.isBlank()) true
                 else it.label.contains(query, ignoreCase = true)
